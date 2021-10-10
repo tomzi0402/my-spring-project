@@ -40,9 +40,8 @@ public class StaffController {
 		staffModel = staffService.getStaffById(id);
 		if (staffModel != null) {
 			System.out.print("staffModel is not Null " + staffModel.getPosition());
+			model.addAttribute("position", staffModel.getPosition());
 		}
-
-		model.addAttribute("position", staffModel.getPosition());
 
 		return "getStaff";
 	}

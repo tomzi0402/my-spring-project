@@ -1,6 +1,7 @@
 package com.example.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,10 +23,16 @@ public class StaffRepository {
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	public StaffModel getStaffById(Integer id) {
-		System.out.print("GET STAFF BY ID");
-		String sql = "SELECT * FROM STAFFINFO WHERE ID = ?";
-		StaffModel staffModel = (StaffModel) jdbcTemplate.queryForObject(sql, new Object[] { id },
-				new BeanPropertyRowMapper(StaffModel.class));
+		StaffModel staffModel = null;
+		try {
+			System.out.print("GET STAFF BY ID");
+			String sql = "SELECT * FROM STAFFINFO WHERE ID = ?";
+			staffModel = (StaffModel) jdbcTemplate.queryForObject(sql, new Object[] { id },
+					new BeanPropertyRowMapper(StaffModel.class));
+		} catch (EmptyResultDataAccessException e) {
+			System.out.println("Empty Result!");
+		}
+
 		return staffModel;
 	}
 
