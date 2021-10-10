@@ -1,14 +1,20 @@
 package com.example.demo;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
+@RequestMapping("/qq")
 public class SpingBootHelloWorld {
 
-	@RequestMapping("/")
+	@GetMapping("/x")
 	public String hello() {
-//		return "Hey, Spring Boot Hello World!";
-		return "index";
+		return "Hey, Spring Boot Hello World!";
+	}
+
+	@GetMapping("/indexx")
+	public String index() {
+		return "indexx";
 	}
 }
