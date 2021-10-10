@@ -6,15 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/qq")
-public class SpingBootHelloWorld {
+public class SpringBootHelloWorld {
 
 	@GetMapping("/x")
 	public String hello() {
 		return "Hey, Spring Boot Hello World!";
 	}
 
-	@GetMapping("/indexx")
+	@GetMapping("/index")
 	public String index() {
-		return "indexx";
+		System.out.println("Accessing /index");
+		return "index";
 	}
 }
